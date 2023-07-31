@@ -1,0 +1,100 @@
+<mvc:View
+    controllerName="r124pdf.controller.Worklist"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:ndc="sap.ndc"
+    xmlns:core="sap.ui.core"
+>
+    <semantic:SemanticPage
+        id="page"
+        headerPinnable="false"
+        toggleHeaderOnTitleClick="false"
+    >
+        <semantic:titleHeading>
+            <Title
+                id="title"
+                text="{i18n>worklistTitle}"
+                level="H2"
+            />
+        </semantic:titleHeading>
+
+        <semantic:content>
+            <FlexBox
+                id="flex3"
+                class="sapUiSmallMargin"
+                direction="Column"
+                renderType="Div"
+            >
+                <f:SimpleForm
+                    id="SimpleFormChange354"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="2"
+                    emptySpanM="1"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="true"
+                >
+                    <f:content>
+                        <Label
+                            id="_IDGenLabel1"
+                            text="{i18n>ProdOrder}"
+                            required="true"
+                        />
+                        <!-- <MultiInput id="multiInput2" showSuggestion="false" showValueHelp="false" /> -->
+                        <MultiInput
+                            id="idProdOrd"
+                            showSuggestion="false"
+                            change="onProdOrderChange"
+                            showValueHelp="false"
+                            valueHelpOnly="false"
+                            valueHelpRequest="onPrdOrderF4"
+                        >
+                        <core:Item id="core" key="{Orderno}"  />
+                        </MultiInput>
+                        <ndc:BarcodeScannerButton
+                            id="ProdOrdBarcodeScannerButton"
+                            scanSuccess="onProdOrdScanSuccess"
+                            scanFail="onScanError"
+                            dialogTitle="{i18n>ProdOrdScan}"
+                        />
+                        <Button
+                            id="_IDGenButton1"
+                            text="{i18n>GetFile}"
+                            press="onGetFilePress"
+                        />
+                    </f:content>
+                </f:SimpleForm>
+                <PDFViewer
+                    id="pdf"
+                    class="sapUiSmallMarginEnd"
+                    source="{/Source}"
+                    title="{i18n>PDF}"
+                    height="60rem"
+                >
+                    <layoutData>
+                        <FlexItemData
+                            id="data"
+                            growFactor="1"
+                        />
+                    </layoutData>
+                </PDFViewer>
+            </FlexBox>
+        </semantic:content>
+
+        <!-- <semantic:sendEmailAction>
+            <semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+        </semantic:sendEmailAction> -->
+    </semantic:SemanticPage>
+</mvc:View>
